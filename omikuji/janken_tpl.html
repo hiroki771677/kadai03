@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/sample.css">
+    <title>じゃんけん</title>
+</head>
+<body>
+
+    <header>
+    </header>
+
+    <main>
+        <div class="KV">
+            <span id="fv">
+                <img src="img/ゴン_ゲンスルー.jpeg" style=width:100%;>
+            </span>
+            <h1 style=text-align:center; id="start">スタート</h1>
+        </div>          
+        <span id="start_gif"></span>
+        <div id="botton" style="display:none;">
+            <ul>
+                <li id="gu_btn"><img src="img/グー.gif" style=width:100%; class="gu"></li>
+                <li id="cho_btn"><img src="img/チョキ.png" style=width:100%; class="gu"></li>
+                <li id="par_btn"><img src="img/パー.jpeg" style=width:100%; class="gu"></li>
+            </ul>
+            <div>ゲンスルーが出した手は？「<span id="pc_hands"></span>」</div>
+            <div id="judgment" style="display:none;">勝ち</div>
+            <div id="kekka" style="display:none;">ここに結果を表示します</div>
+            <div id="scoreBoard1"></div>
+            <div id="scoreBoard2"></div>
+            <div id="scoreBoard3"></div>
+        </div>
+    </main>
+
+    <footer></footer>
+    <script>
+       $("#start").on("click",function(){
+        document.querySelector("#fv").innerHTML = '<img src="img/最初はグー.jpeg" style=width:100%;>'
+        document.querySelector("#start").style.display="none";
+        document.querySelector("#botton").style.display="block";
+         });
+        var count = {
+            win: 0,
+            lost: 0,
+            draw: 0,
+        };
+
+        $("#gu_btn").on("click",function(){
+        const r = Math.ceil(Math.random()*3);
+        const pc_hands = document.querySelector("#pc_hands");
+        const judgment = document.querySelector("#judgment");
+        if(r==1){
+            pc_hands.innerHTML = "グー"; 
+            judgment.innerHTML = "あいこ"; 
+            count["draw"]++;
+        }
+        if(r==2){
+            pc_hands.innerHTML = "チョキ"; 
+            judgment.innerHTML = "勝ち"; 
+            count["win"]++;
+        }
+        if(r==3){
+            pc_hands.innerHTML = "パー"; 
+            judgment.innerHTML = "負け"; 
+            count["lost"]++;
+        }
+        document.querySelector("#scoreBoard1").innerHTML = "勝数:" + count["win"]
+        document.querySelector("#scoreBoard2").innerHTML = "負数:" + count["lost"]
+        document.querySelector("#scoreBoard3").innerHTML = "引き分け:" + count["draw"]
+        });
+        
+        $("#cho_btn").on("click",function(){
+        const r = Math.ceil(Math.random()*3);
+        const pc_hands = document.querySelector("#pc_hands");
+        const judgment = document.querySelector("#judgment");
+        if(r==1){
+            pc_hands.innerHTML = "グー"; 
+            judgment.innerHTML = "負け"; 
+            count["lost"]++;
+        }
+        if(r==2){
+            pc_hands.innerHTML = "チョキ"; 
+            judgment.innerHTML = "あいこ"; 
+            count["draw"]++;
+        }
+        if(r==3){
+            pc_hands.innerHTML = "パー"; 
+            judgment.innerHTML = "勝ち"; 
+            count["win"]++;
+        }
+        document.querySelector("#scoreBoard1").innerHTML = "勝数:" + count["win"]
+        document.querySelector("#scoreBoard2").innerHTML = "負数:" + count["lost"]
+        document.querySelector("#scoreBoard3").innerHTML = "引き分け:" + count["draw"]
+        });
+
+        $("#par_btn").on("click",function(){
+        const r = Math.ceil(Math.random()*3);
+        const pc_hands = document.querySelector("#pc_hands");
+        const judgment = document.querySelector("#judgment");
+        if(r==1){
+            pc_hands.innerHTML = "グー"; 
+            judgment.innerHTML = "勝ち"; 
+            count["win"]++;
+        }
+        if(r==2){
+            pc_hands.innerHTML = "チョキ"; 
+            judgment.innerHTML = "負け"; 
+            count["lost"]++;
+        }
+        if(r==3){
+            pc_hands.innerHTML = "パー"; 
+            judgment.innerHTML = "あいこ"; 
+            count["draw"]++;
+        }
+        document.querySelector("#scoreBoard1").innerHTML = "勝数:" + count["win"]
+        document.querySelector("#scoreBoard2").innerHTML = "負数:" + count["lost"]
+        document.querySelector("#scoreBoard3").innerHTML = "引き分け:" + count["draw"]
+        });
+
+    </script>
+</body>
+
+</html>
